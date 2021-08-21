@@ -1,27 +1,27 @@
 // Assignment code here
 function generatePassword() {
 
-  var specialSet = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?', ':', ',', ')', '(', '}', '{', ']', '[', '~', '-', '_', '.'];
+  var specialChar = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?', ':', ',', ')', '(', '}', '{', ']', '[', '~', '-', '_', '.'];
 
-  var numSet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  var numeriSet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-  var lowerCaseSet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  var lowerCaseChar = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-  var upperCaseSet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  var upperCaseChar = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
   var selectedArray = [];
 
   var passwordLength = getPasswordLength();
 
-  var charTypeSelected = false;
-  //loop to make sure the user selects at least one character type
-  while (charTypeSelected == false) {
-    var lowerCase = getChoice("lowercase");
-    var upperCase = getChoice("uppercase");
-    var numericCharacters = getChoice("numeric");
-    var specialCharacters = getChoice("special");
+  var charSelected = false;
+  //loop to make sure at least one character type is selected
+  while (charSelected == false) {
+    var lowerCase = choice("lowercase");
+    var upperCase = choice("uppercase");
+    var numericCharacters = choice("numeric");
+    var specialCharacters = choice("special");
     if ((lowerCase) || (upperCase) || (numericCharacters) || (specialCharacters)) {
-      charTypeSelected = true;
+      charSelected = true;
     } else {
       window.alert("You must select at least one character type.")
     }
@@ -29,16 +29,16 @@ function generatePassword() {
 
   //appends usersChoice to the blank array I created.
   if (lowerCase) {
-    selectedArray = selectedArray.concat(lowerCaseSet);
+    selectedArray = selectedArray.concat(lowerCaseChar);
   }
   if (upperCase) {
-    selectedArray = selectedArray.concat(upperCaseSet);
+    selectedArray = selectedArray.concat(upperCaseChar);
   }
   if (numericCharacters) {
-    selectedArray = selectedArray.concat(numSet);
+    selectedArray = selectedArray.concat(numeriSet);
   }
   if (specialCharacters) {
-    selectedArray = selectedArray.concat(specialSet);
+    selectedArray = selectedArray.concat(specialChar);
   }
 
   var passwordString = "";
@@ -64,6 +64,24 @@ function getPasswordLength() {
   }
 
   return userChoice;
+}
+
+
+function choice(currentChoice) {
+  var userChoice = "a",
+    messagePrompt = "";
+  var messagePrompt = ('Would you like '.concat(currentChoice));
+  messagePrompt = messagePrompt.concat(' characters (y/n)?');
+
+
+  while (userChoice = "a") {
+    userChoice = (window.prompt(messagePrompt));
+    if (userChoice == "y") {
+      return true;
+    } else if (userChoice == "n") {
+      return false;
+    }
+  }
 }
 
 
